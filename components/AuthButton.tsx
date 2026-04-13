@@ -2,11 +2,11 @@
 
 import { signIn, signOut, useSession } from "next-auth/react"
 
-// 🔹 Componente de login/logout
+//  Componente de login/logout
 export default function AuthButton() {
     const { data: session } = useSession() // Pega sessão atual
 
-    // 🔹 Se estiver logado
+    //  Se estiver logado
     if (session) {
         return (
             <div>
@@ -19,7 +19,7 @@ export default function AuthButton() {
         )
     }
 
-    // 🔹 Se NÃO estiver logado
+    //  Se NÃO estiver logado
     return (
         <button onClick={() => signIn("google")}>
             Login com Google

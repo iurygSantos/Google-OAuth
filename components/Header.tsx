@@ -2,15 +2,17 @@
 
 import { useSession } from "next-auth/react"
 
-// 🔹 Exibe dados do usuário
+import styles from "./Header.module.css"
+
+//  Exibe dados do usuário
 export default function Header() {
     const { data: session } = useSession()
 
     return (
         <header>
             {session ? (
-                <div>
-                    <img src={session.user?.image!} width={40} />
+                <div className={styles.container}>
+                    <img src={session.user?.image!} width={40} style={{ borderRadius: "50%" }} alt="Foto de perfil" />
                     <span>{session.user?.name}</span>
                 </div>
             ) : (
