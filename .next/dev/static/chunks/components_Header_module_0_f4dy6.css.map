@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["file:///C:/CODIGOS/linguagens/JAVASCRIPT/GOOGLE-OAUTH/pbl-auth/components/Header.module.css"],"sourcesContent":[".container {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: left;\r\n    gap: 10px;\r\n    padding: 10px;\r\n    background-color: #747171;\r\n    border-radius: 5px;\r\n    width: 150px;\r\n}"],"names":[],"mappings":"AAAA"}}]
-}

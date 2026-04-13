@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///C:/CODIGOS/linguagens/JAVASCRIPT/GOOGLE-OAUTH/pbl-auth/components/AuthButton.tsx"],"sourcesContent":["\"use client\"\r\n\r\nimport { signIn, signOut, useSession } from \"next-auth/react\"\r\n\r\n// 🔹 Componente de login/logout\r\nexport default function AuthButton() {\r\n    const { data: session } = useSession() // Pega sessão atual\r\n\r\n    // 🔹 Se estiver logado\r\n    if (session) {\r\n        return (\r\n            <div>\r\n                <p>Logado como {session.user?.name}</p>\r\n\r\n                <button onClick={() => signOut()}>\r\n                    Sair\r\n                </button>\r\n            </div>\r\n        )\r\n    }\r\n\r\n    // 🔹 Se NÃO estiver logado\r\n    return (\r\n        <button onClick={() => signIn(\"google\")}>\r\n            Login com Google\r\n        </button>\r\n    )\r\n}"],"names":["AuthButton","data","session","user","name","onClick"],"mappings":";;;;;AAEA;AAFA;;;AAKe,SAASA;IACpB,MAAM,EAAEC,MAAMC,OAAO,EAAE,GAAG,IAAA,4JAAU,IAAG,oBAAoB;;IAE3D,uBAAuB;IACvB,IAAIA,SAAS;QACT,qBACI,8OAAC;;8BACG,8OAAC;;wBAAE;wBAAaA,QAAQC,IAAI,EAAEC;;;;;;;8BAE9B,8OAAC;oBAAOC,SAAS,IAAM,IAAA,yJAAO;8BAAI;;;;;;;;;;;;IAK9C;IAEA,2BAA2B;IAC3B,qBACI,8OAAC;QAAOA,SAAS,IAAM,IAAA,wJAAM,EAAC;kBAAW;;;;;;AAIjD"}}]
-}
