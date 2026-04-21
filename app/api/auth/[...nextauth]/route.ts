@@ -2,7 +2,7 @@ import NextAuth from "next-auth" // Importa o núcleo do Auth.js
 import GoogleProvider from "next-auth/providers/google" // Provider do Google
 import CredentialsProvider from "next-auth/providers/credentials"
 
-//  "Banco de dados" fake em memória (simples pro PBL)
+// //  "Banco de dados" fake em memória (simples pro PBL)
 const fakeDB: any[] = []
 
 //  Configuração do Auth.js
@@ -82,75 +82,30 @@ const handler = NextAuth({
     }
 })
 
-export { handler as GET, handler as POST }
 
-
-
-
-
-
-
-
-
-
-
-// const handler = NextAuth({
-//     providers: [
-//         GoogleProvider({
-//             clientId: process.env.GOOGLE_CLIENT_ID!, // Pega ID do .env
-//             clientSecret: process.env.GOOGLE_CLIENT_SECRET!, // Pega SECRET do .env
-//         }),
-//     ],
-
-//     callbacks: {
-//         // Executa no momento do login
-//         async signIn({ user }) {
-//             // Procura usuário pelo email no "banco"
-//             const existingUser = fakeDB.find(u => u.email === user.email)
-
-//             // Se não existir, cria um novo
-//             if (!existingUser) {
-//                 fakeDB.push({
-//                     id: fakeDB.length + 1, // ID incremental simples
-//                     name: user.name,
-//                     email: user.email,
-//                     image: user.image
-//                 })
-//             }
-
-//             return true // Permite login
-//         },
-
-//         //  Executa quando a sessão é criada/retornada
-//         async session({ session }) {
-//             // Busca usuário no "banco"
-//             const dbUser = fakeDB.find(u => u.email === session.user?.email)
-
-//             // Injeta o ID na sessão
-//             if (dbUser && session.user) {
-//                 session.user.id = dbUser.id
-//             }
-
-//             return session // Retorna sessão modificada
-//         }
-//     }
-// })
 
 // export const authOptions = {
+
 //     providers: [
+
+//         GoogleProvider({
+//             clientId: process.env.GOOGLE_CLIENT_ID!,
+//             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+//         }),
+
 //         CredentialsProvider({
 //             name: "Passkey",
 //             credentials: {},
 
-//             async authorize(credentials, req) {
+//             async authorize(credentials) {
 
-//                 // aqui você vai validar WebAuthn depois
 //                 if (!credentials) return null
 
-//                 return {
-//                     id: "123",
-//                     email: "usuario@teste.com"
-//                 }
+//                 const user = fakeDB.find(u => u.id === credentials.id)
+
+//                 if (!user) return null
+
+//                 return user
 //             }
 //         })
 //     ],
@@ -160,6 +115,27 @@ export { handler as GET, handler as POST }
 //     },
 
 //     callbacks: {
+
+//         async signIn({ user, account }) {
+
+//             if (account?.provider === "google") {
+
+//                 const existingUser = fakeDB.find(u => u.email === user.email)
+
+//                 if (!existingUser) {
+//                     fakeDB.push({
+//                         id: String(fakeDB.length + 1),
+//                         name: user.name,
+//                         email: user.email,
+//                         image: user.image,
+//                         passkeys: []
+//                     })
+//                 }
+//             }
+
+//             return true
+//         },
+
 //         async jwt({ token, user }) {
 //             if (user) {
 //                 token.id = user.id
@@ -169,7 +145,7 @@ export { handler as GET, handler as POST }
 
 //         async session({ session, token }) {
 //             if (session.user) {
-//                 session.user.id = token.id
+//                 session.user.id = token.id as string
 //             }
 //             return session
 //         }
@@ -178,5 +154,4 @@ export { handler as GET, handler as POST }
 
 // const handler = NextAuth(authOptions)
 
-// // Exporta handlers para requisições GET e POST
-// export { handler as GET, handler as POST }
+export { handler as GET, handler as POST }
